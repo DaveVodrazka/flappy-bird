@@ -1,3 +1,3 @@
-import { setup } from "./setup.js";
+import { Game } from "./setup.js";
 
-setup();
+new Game();

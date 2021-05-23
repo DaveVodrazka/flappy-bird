@@ -8,7 +8,7 @@ export const getPipeY = () => {
 };
 
 export const isColliding = (playerX, playerY, pipeX, pipeY) => {
-  if (pipeX <= playerX && pipeX + PIPE.WIDTH > playerX && (playerY > pipeY || playerY < pipeY - PIPE.HOLE_SIZE)) {
+  if (pipeX - PLAYER.SIZE <= playerX && pipeX + PIPE.WIDTH > playerX + PLAYER.SIZE && (playerY + PLAYER.SIZE > pipeY || playerY - PLAYER.SIZE < pipeY - PIPE.HOLE_SIZE)) {
     return true;
   } else {
     return false;

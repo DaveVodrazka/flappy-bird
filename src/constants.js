@@ -10,13 +10,13 @@ export const STARTING_OFFSET = 300;
 export const PLAYER = Object.freeze({
   INITIAL_Y: 270,
   INITITAL_X: 150,
-  SIZE: 10,
-  COLOR: 'yellow',
+  SIZE: 20,
+  COLOR: "yellow",
 });
 export const INTERVAL = 10;
 export const PIPE = Object.freeze({
   SPEED: -3,
   HOLE_SIZE: 150,
-  COLOR: 'green',
+  COLOR: "green",
   WIDTH: 100,
 });

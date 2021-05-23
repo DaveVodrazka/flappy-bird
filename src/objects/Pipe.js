@@ -1,9 +1,16 @@
-import { CANVAS_PROPERTIES, PIPE, PLAYER } from "../constants.js";
+import {
+  CANVAS_PROPERTIES,
+  PIPE,
+  PLAYER,
+  STARTING_OFFSET,
+} from "../constants.js";
 import { isColliding, getPipeY } from "../utils.js";
 
 export class Pipe {
   constructor(context, player, x) {
-    this.x = x;
+    this.initialX = x + STARTING_OFFSET;
+    this.startingX = CANVAS_PROPERTIES.WIDTH + PIPE.WIDTH;
+    this.x = this.initialX + STARTING_OFFSET;
     this.y = getPipeY();
     this.velX = PIPE.SPEED;
     this.context = context;
@@ -12,13 +19,22 @@ export class Pipe {
     this.hasScored = false;
   }
 
-  reset(x) {
-    this.x = x;
+  reset(goToStart) {
+    if (goToStart) {
+      this.x = this.startingX;
+    } else {
+      this.x = this.initialX;
+    }
     this.y = getPipeY();
+    this.hasScored = false;
+    this.currentlyColliding = false;
   }
 
   collision() {
-    if (isColliding(this.player.x, this.player.y, this.x, this.y) && !this.currentlyColliding) {
+    if (
+      isColliding(this.player.x, this.player.y, this.x, this.y) &&
+      !this.currentlyColliding
+    ) {
       this.currentlyColliding = true;
       window.dispatchEvent(new CustomEvent("game-over"));
     }
@@ -27,23 +43,28 @@ export class Pipe {
   check() {
     this.collision();
     // passed the player
-    if (this.x < PLAYER.INITITAL_X - PIPE.WIDTH - PLAYER.SIZE && !this.hasScored) {
+    if (
+      this.x < PLAYER.INITITAL_X - PIPE.WIDTH - PLAYER.SIZE &&
+      !this.hasScored
+    ) {
       window.dispatchEvent(new CustomEvent("point"));
       this.hasScored = true;
     }
     // out of the board
     if (this.x < -PIPE.WIDTH) {
-      this.hasScored = false;
-      this.currentlyColliding = false;
-      this.x = CANVAS_PROPERTIES.WIDTH + PIPE.WIDTH;
-      this.y = getPipeY();
+      this.reset(true);
     }
   }
 
   show() {
     this.context.fillStyle = PIPE.COLOR;
     this.context.fillRect(this.x, this.y, PIPE.WIDTH, CANVAS_PROPERTIES.HEIGHT);
-    this.context.fillRect(this.x, this.y - CANVAS_PROPERTIES.HEIGHT - PIPE.HOLE_SIZE, PIPE.WIDTH, CANVAS_PROPERTIES.HEIGHT);
+    this.context.fillRect(
+      this.x,
+      this.y - CANVAS_PROPERTIES.HEIGHT - PIPE.HOLE_SIZE,
+      PIPE.WIDTH,
+      CANVAS_PROPERTIES.HEIGHT
+    );
   }
 
   update() {
