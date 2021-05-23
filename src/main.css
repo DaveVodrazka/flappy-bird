@@ -1,0 +1,21 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background: #333;
+  color: white;
+  font-family: Georgia, sans-serif, "Times New Roman", Times, serif, Helvetica;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+canvas {
+  background: turquoise;
+}
+
+h1 {
+  padding: 20px;
+}
