@@ -6,7 +6,7 @@ export const CANVAS_PROPERTIES = Object.freeze({
 });
 export const GRAVITY = 0.2;
 export const FLAP_SPEED = -6;
-export const STARTING_OFFSET = 300;
+export const STARTING_OFFSET = 150;
 export const PLAYER = Object.freeze({
   INITIAL_Y: 270,
   INITITAL_X: 150,

@@ -10,13 +10,20 @@ export class Pipe {
   constructor(context, player, x) {
     this.initialX = x + STARTING_OFFSET;
     this.startingX = CANVAS_PROPERTIES.WIDTH + PIPE.WIDTH;
-    this.x = this.initialX + STARTING_OFFSET;
+    this.x = this.initialX;
     this.y = getPipeY();
     this.velX = 0;
     this.context = context;
     this.player = player;
     this.currentlyColliding = false;
     this.hasScored = false;
+  }
+
+  get data() {
+    return {
+      x: this.x + PIPE.WIDTH,
+      y: this.y,
+    }
   }
 
   reset(goToStart) {

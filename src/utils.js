@@ -14,3 +14,25 @@ export const isColliding = (playerX, playerY, pipeX, pipeY) => {
     return false;
   }
 };
+
+export const composeData = (playerData, pipeOneData, pipeTwoData) => {
+  let currentPipe = null;
+
+  if (pipeOneData.x < playerData.x) {
+    currentPipe = pipeTwoData;
+  } else if (pipeTwoData.x < playerData.x) {
+    currentPipe = pipeOneData;
+  } else if (pipeOneData.x < pipeTwoData.x) {
+    currentPipe = pipeOneData;
+  } else {
+    currentPipe = pipeTwoData;
+  }
+  
+  return {
+    distance: currentPipe.x - playerData.x,
+    height: playerData.y,
+    velocity: playerData.velY,
+    bottomPipe: currentPipe.y,
+    topPipe: currentPipe.y - PIPE.HOLE_SIZE,
+  }
+};

@@ -9,6 +9,14 @@ export class Player {
     this.context = context;
   }
 
+  get data() {
+    return {
+      x: this.x,
+      y: this.y,
+      velY: this.velY,
+    }
+  }
+
   reset() {
     this.x = PLAYER.INITITAL_X;
     this.y = PLAYER.INITIAL_Y;
