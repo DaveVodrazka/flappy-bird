@@ -4,6 +4,7 @@ export class Player {
   constructor(context) {
     this.x = PLAYER.INITITAL_X;
     this.y = PLAYER.INITIAL_Y;
+    this.gravity = 0;
     this.velY = 0;
     this.context = context;
   }
@@ -12,6 +13,14 @@ export class Player {
     this.x = PLAYER.INITITAL_X;
     this.y = PLAYER.INITIAL_Y;
     this.velY = 0;
+  }
+
+  pause() {
+    this.gravity = 0;
+  }
+
+  play() {
+    this.gravity = GRAVITY;
   }
 
   check() {
@@ -35,7 +44,7 @@ export class Player {
   }
 
   update() {
-    this.velY += GRAVITY;
+    this.velY += this.gravity;
     this.y += this.velY;
     this.check();
   }

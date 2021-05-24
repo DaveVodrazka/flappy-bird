@@ -10,7 +10,7 @@ export const STARTING_OFFSET = 300;
 export const PLAYER = Object.freeze({
   INITIAL_Y: 270,
   INITITAL_X: 150,
-  SIZE: 20,
+  SIZE: 15,
   COLOR: "yellow",
 });
 export const INTERVAL = 10;

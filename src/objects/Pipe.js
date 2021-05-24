@@ -12,7 +12,7 @@ export class Pipe {
     this.startingX = CANVAS_PROPERTIES.WIDTH + PIPE.WIDTH;
     this.x = this.initialX + STARTING_OFFSET;
     this.y = getPipeY();
-    this.velX = PIPE.SPEED;
+    this.velX = 0;
     this.context = context;
     this.player = player;
     this.currentlyColliding = false;
@@ -28,6 +28,14 @@ export class Pipe {
     this.y = getPipeY();
     this.hasScored = false;
     this.currentlyColliding = false;
+  }
+
+  pause() {
+    this.velX = 0;
+  }
+
+  play() {
+    this.velX = PIPE.SPEED;
   }
 
   collision() {
